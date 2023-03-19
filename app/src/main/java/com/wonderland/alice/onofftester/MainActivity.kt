@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         try {
             unregisterReceiver(screenOnReceiver)
-        } catch (_: IllegalAccessException) {
-        }
+        } catch (_: IllegalArgumentException) {
+        } catch (_: Exception){}
 
     }
 
@@ -124,8 +124,8 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Stop Testing")
         try {
             unregisterReceiver(screenOnReceiver)
-        } catch (_: IllegalAccessException) {
-        }
+        } catch (_: IllegalArgumentException) {
+        } catch (_: Exception){}
         viewModel.changeOnTesting(false)
         alarmUtils.cancelAlarm()
         showTimer()

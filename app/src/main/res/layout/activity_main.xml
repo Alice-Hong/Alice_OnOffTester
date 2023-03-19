@@ -20,7 +20,7 @@
             android:id="@+id/btn_onoff"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Test\nStart"
+            android:text="테스트 시작"
             android:textSize="24sp"
             app:bindingTestStatus="@{viewModel.onTesting}"
             app:layout_constraintHeight_percent="0.3"
@@ -67,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="screenOff"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
