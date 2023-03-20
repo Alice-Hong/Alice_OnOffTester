@@ -6,10 +6,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.wonderland.alice.onofftester.MainActivity.Companion.rootScreenOnAtAlarm
+import com.wonderland.alice.onofftester.ui.MainActivity.Companion.rootScreenOnAtAlarm
 import com.wonderland.alice.onofftester.SCREEN_OFF_TIMER
 import com.wonderland.alice.onofftester.SCREEN_ON_TIMER
 import com.wonderland.alice.onofftester.TAG
+import com.wonderland.alice.onofftester.UserPreferencesRepository
 import com.wonderland.alice.onofftester.screen.ScreenManager
 import java.util.*
 
@@ -22,9 +23,11 @@ class AlarmUtils(private val context: Context) {
         try {
             val calendar = Calendar.getInstance()
             if (act == ACT_SCREEN.SCREEN_ON) {
-                calendar.add(Calendar.MINUTE, SCREEN_ON_TIMER)
+                Log.d(TAG, "Add ON Time to Alarm: ${UserPreferencesRepository.screenOnTimer}")
+                calendar.add(Calendar.MINUTE, UserPreferencesRepository.screenOnTimer)
             } else {
-                calendar.add(Calendar.MINUTE, SCREEN_OFF_TIMER)
+                Log.d(TAG, "Add OFF Time to Alarm: ${UserPreferencesRepository.screenOffTimer}")
+                calendar.add(Calendar.MINUTE, UserPreferencesRepository.screenOffTimer)
             }
             val pendingIntent = makePendingIntent(act)
             if (pendingIntent != null) {

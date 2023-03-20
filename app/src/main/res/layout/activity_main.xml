@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.wonderland.alice.onofftester.MainViewModel" />
+            type="com.wonderland.alice.onofftester.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <Button
             android:id="@+id/btn_onoff"
@@ -23,13 +23,13 @@
             android:text="테스트 시작"
             android:textSize="24sp"
             app:bindingTestStatus="@{viewModel.onTesting}"
-            app:layout_constraintHeight_percent="0.3"
-            app:layout_constraintWidth_percent="0.3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_display_time"
 
+            app:layout_constraintEnd_toStartOf="@id/tv_display_time"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/on_num_picker"
+            app:layout_constraintWidth_percent="0.3" />
 
         <TextView
             android:id="@+id/tv_display_time"
@@ -56,11 +56,11 @@
             android:id="@+id/btn_deviceadmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
             android:text="기기관리자"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/btn_screenoff"
@@ -70,6 +70,175 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <NumberPicker
+            android:id="@+id/off_num_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/on_num_picker"
+            app:layout_constraintEnd_toStartOf="@+id/btn_off_remove_10"
+            app:layout_constraintStart_toEndOf="@+id/btn_off_add_10"
+            app:layout_constraintTop_toTopOf="@+id/on_num_picker"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <NumberPicker
+            android:id="@+id/on_num_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:fadingEdgeLength="10dip"
+            app:layout_constraintEnd_toStartOf="@+id/btn_on_remove_10"
+            app:layout_constraintStart_toEndOf="@+id/btn_on_add_10"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Screen On Timer(분)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/on_num_picker"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Screen Off Timer(분)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <Button
+            android:id="@+id/btn_on_add_10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp"
+            android:tag="10"
+            android:text="+ 10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_on_add_100"
+            app:layout_constraintEnd_toStartOf="@+id/on_num_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/on_num_picker" />
+
+        <Button
+            android:id="@+id/btn_on_add_100"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:tag="100"
+            android:text="+ 100"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/on_num_picker"
+            app:layout_constraintEnd_toEndOf="@+id/btn_on_add_10"
+            app:layout_constraintStart_toStartOf="@+id/btn_on_add_10"
+            app:layout_constraintTop_toBottomOf="@+id/btn_on_add_10" />
+
+        <Button
+            android:id="@+id/btn_on_remove_10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:tag="-10"
+            android:text="- 10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btn_on_remove_100"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/on_num_picker"
+            app:layout_constraintTop_toTopOf="@+id/on_num_picker" />
+
+        <Button
+            android:id="@+id/btn_on_remove_100"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:tag="-100"
+            android:text="- 100"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/on_num_picker"
+            app:layout_constraintEnd_toEndOf="@+id/btn_on_remove_10"
+            app:layout_constraintStart_toStartOf="@+id/btn_on_remove_10"
+            app:layout_constraintTop_toBottomOf="@+id/btn_on_remove_10" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="#F1F1F1"
+            app:layout_constraintBottom_toBottomOf="@+id/on_num_picker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_off_add_10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp"
+            android:tag="10"
+            android:text="+ 10"
+            app:layout_constraintBottom_toTopOf="@+id/btn_off_add_100"
+            app:layout_constraintEnd_toStartOf="@+id/off_num_picker"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/off_num_picker" />
+
+        <Button
+            android:id="@+id/btn_off_add_100"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:tag="100"
+            android:text="+ 100"
+            app:layout_constraintBottom_toBottomOf="@+id/off_num_picker"
+            app:layout_constraintEnd_toEndOf="@+id/btn_off_add_10"
+            app:layout_constraintStart_toStartOf="@+id/btn_off_add_10"
+            app:layout_constraintTop_toBottomOf="@+id/btn_off_add_10" />
+
+        <Button
+            android:id="@+id/btn_off_remove_10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:tag="-10"
+            android:text="- 10"
+            app:layout_constraintBottom_toTopOf="@+id/btn_off_remove_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/off_num_picker"
+            app:layout_constraintTop_toTopOf="@+id/off_num_picker" />
+
+        <Button
+            android:id="@+id/btn_off_remove_100"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:tag="-100"
+            android:text="- 100"
+            app:layout_constraintBottom_toBottomOf="@+id/off_num_picker"
+            app:layout_constraintEnd_toEndOf="@+id/btn_off_remove_10"
+            app:layout_constraintStart_toStartOf="@+id/btn_off_remove_10"
+            app:layout_constraintTop_toBottomOf="@+id/btn_off_remove_10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
