@@ -87,11 +87,16 @@ class MainActivity : AppCompatActivity() {
                 if (rootScreenOnAtAlarm) {
                     showTimer(UserPreferencesRepository.screenOnTimer)
                 } else {
-                    Log.d(TAG, "테스트 중단")
-                    testStop()
+                    if(viewModel.moreThanOnceScreenOffEvent) {
+                        Log.d(TAG, "테스트 중단")
+                        testStop()
+                    }else{
+                        Log.d(TAG, "처음 이벤트 무시")
+                    }
                 }
             } else if (intent.action == Intent.ACTION_SCREEN_OFF) {
                 Log.d(TAG, "화면 꺼짐")
+                viewModel.moreThanOnceScreenOffEvent = true
                 rootScreenOnAtAlarm = false
             }
         }
