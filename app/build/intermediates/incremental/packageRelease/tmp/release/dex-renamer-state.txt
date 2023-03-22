@@ -1,4 +1,0 @@
-#Sun Mar 19 15:47:21 KST 2023
-base.0=/Users/alice/Developer/Project/Alice/000_GitHub/05_Alice_OnOffTester/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
